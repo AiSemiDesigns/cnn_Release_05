@@ -11,16 +11,16 @@ module idu(
     idu2dfu_load_fifo_empty,
     idu2dfu_load_instr,
     idu2dfu_load_instr_vld,
-    // dfu2idu_load_done,
+    dfu2idu_load_done,
     idu2dfu_compute_fifo_empty,
     idu2dfu_compute_instr,
     idu2dfu_compute_instr_vld,
-    // dfu2idu_compute_done,
+    dfu2idu_compute_done,
     idu2dfu_store_fifo_empty,
     idu2dfu_store_instr,
     idu2dfu_store_instr_vld,
-    // dfu2idu_store_done,
-    dfu_lsc_done,
+    dfu2idu_store_done,
+   // dfu_lsc_done,
   dfu2idu_load_instr_req,
   dfu2idu_compute_instr_req,
   dfu2idu_store_instr_req
@@ -47,7 +47,7 @@ output idu2dfu_load_fifo_empty ;
 input dfu2idu_load_instr_req ;
   output [INSTR_WIDTH-1:0] idu2dfu_load_instr ;
 output idu2dfu_load_instr_vld ;
-//input dfu2idu_load_done ;
+input dfu2idu_load_done ;
   
 //idu compute to dfu ------------------------------------------
 
@@ -55,7 +55,7 @@ output idu2dfu_compute_fifo_empty ;
 input dfu2idu_compute_instr_req ;
   output [INSTR_WIDTH-1:0] idu2dfu_compute_instr ;
 output idu2dfu_compute_instr_vld ;
-//input dfu2idu_compute_done ;
+input dfu2idu_compute_done ;
 
 //idu store to dfu ------------------------------------------
 
@@ -63,7 +63,7 @@ output idu2dfu_store_fifo_empty ;
 input dfu2idu_store_instr_req ;
   output [INSTR_WIDTH-1:0] idu2dfu_store_instr ;
 output idu2dfu_store_instr_vld ;
-//input dfu2idu_store_done ;
+input dfu2idu_store_done ;
   
   input dfu_lsc_done;
   
@@ -110,11 +110,11 @@ output idu2dfu_store_instr_vld ;
                   .load_data(data_w1),
                   .comp_data(data_w2),
                   .store_data(data_w3),
-                  //.dfu2idu_load_done(dfu2idu_load_done),
-                  //.dfu2idu_compute_done(dfu2idu_compute_done),
-                  //.dfu2idu_store_done(dfu2idu_store_done),
-                    .dfu_lsc_done(dfu_lsc_done),
-                    .start_load(start_load),
+                  .dfu2idu_load_done(dfu2idu_load_done),
+                  .dfu2idu_compute_done(dfu2idu_compute_done),
+                  .dfu2idu_store_done(dfu2idu_store_done),
+                  //.dfu_lsc_done(dfu_lsc_done),
+                  .start_load(start_load),
                   .start_compute(start_compute),
                   .start_store(start_store)
                     );

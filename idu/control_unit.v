@@ -5,10 +5,10 @@ module control_unit #(parameter FIFO_IFU_WIDTH=64,INSTR_WIDTH=256,INT_WIDTH=192)
   input 	[FIFO_IFU_WIDTH-1:0]ifu2idu_rd_data ,
   input   	ifu2idu_rd_data_vld,
   input		load_full,comp_full,store_full,
- // input 	dfu2idu_load_done,
-  //input 	dfu2idu_compute_done ,
-  //input 	dfu2idu_store_done ,
-  input dfu_lsc_done,
+  input 	dfu2idu_load_done,
+  input 	dfu2idu_compute_done ,
+  input 	dfu2idu_store_done ,
+//  input dfu_lsc_done,
   output reg idu2ifu_rd_rqst			,
   output reg store_wr_en,load_wr_en,comp_wr_en,
   output reg [INSTR_WIDTH-1:0]load_data,store_data,comp_data,
@@ -271,7 +271,7 @@ module control_unit #(parameter FIFO_IFU_WIDTH=64,INSTR_WIDTH=256,INT_WIDTH=192)
   begin
   count <= 'b0;
   end
-    else if(dfu_lsc_done||(temp==1&&count==0))begin      
+    else if( dfu2idu_load_instr_done || dfu2idu_compute_done || dfu2idu_store_done ||(temp==1&&count==0))begin      
       count<=count+1;end
     else if(count==5) begin
       count<=0;

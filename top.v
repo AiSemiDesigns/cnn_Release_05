@@ -8,7 +8,7 @@
 `include "idu.v"
 `include "DFU_TOP.v"
 `include "systollic_array.v"
-`include "dfu_lsc_done.v"
+//`include "dfu_lsc_done.v"
 module TOP(
   				input 							clk,
  				input 							rst,
@@ -207,8 +207,8 @@ module TOP(
                 			//.ar2dfu_wr_addr() ,
                 			//.ar2dfu_wr_addr_valid() ,
                 			.ar2dfu_wr_done(ar2dfu_wr_done) ,
-                      		.dfu2ar_rd_data(dfu2ar_axi_data_out)    ,//read data valid and last need to add
-                      .dfu2ar_rd_data_vld(dfu2ar_axi_data_out_vld),
+                      			.dfu2ar_rd_data(dfu2ar_axi_data_out)    ,//read data valid and last need to add
+                      			.dfu2ar_rd_data_vld(dfu2ar_axi_data_out_vld),
                 			.axi2ar_rd_addr(axi2ar_rd_addr) ,
                 			.axi2ar_rd_addr_valid(axi2ar_rd_addr_valid) ,
                 			.ar2dfu_ack(ar2dfu_ack) ,
@@ -253,10 +253,10 @@ module TOP(
                 			.axi2ar_wr_addr_valid(axi2ar_wr_addr_valid) ,
                 			.axi2ar_wr_done(axi2ar_wr_done) ,
                 			.ar2axi_rd_data(ar2axi_rd_data) ,
-                      .ar2axi_rd_data_vld(ar2axi_rd_data_vld),
+                      			.ar2axi_rd_data_vld(ar2axi_rd_data_vld),
                 			.ar2dfu_rd_addr(ar2dfu_rd_addr) ,
                 			.ar2dfu_rd_addr_valid(ar2dfu_rd_addr_valid) ,
-                      		.ar2ifu_int_interrupt(ar2ifu_int_interrupt) ,// it goes to interface 
+                      			.ar2ifu_int_interrupt(ar2ifu_int_interrupt) ,// it goes to interface 
                 			.ar_maskable_interrupt(ifu2ar_maskable_interrupt),
                 			.ar2dfu_int_write_interrupt(ar2dfu_int_write_interrupt),//newly added
                				.ar2dfu_int_read_interrupt(ar2dfu_int_read_interrupt),//newly added
@@ -318,16 +318,16 @@ module TOP(
   							.RVALID(RVALID),
   							.RRESP(RRESP),
   							.RREADY(RREADY),
-                          	.WID(WID),
-                          	.BID(BID),
-                         	.ARID(ARID),
+                          				.WID(WID),
+                          				.BID(BID),
+                         				.ARID(ARID),
                           	//.WSTRB(WSTRB),
                          	//.AWCACHE(AWCACHE),
                          	//.AWLOCK(AWLOCK),
                           	//.AWQOS(AWQOS),
                           	//.AWPROT(AWPROT),
   							.ar2axi_rd_data(ar2axi_rd_data), 
-                           .ar2axi_rd_data_vld(ar2axi_rd_data_vld),
+                           				.ar2axi_rd_data_vld(ar2axi_rd_data_vld),
   							.axi2ar_wr_addr(axi2ar_wr_addr),
   							.axi2ar_wr_addr_valid(axi2ar_wr_addr_valid),
   							.axi2ar_wr_data(axi2ar_wr_data),
@@ -349,29 +349,29 @@ module TOP(
  								 .dfu2idu_load_instr_req(dfu2idu_load_instr_req),
  								 .idu2dfu_load_instr(idu2dfu_load_instr),
  								 .idu2dfu_load_instr_vld(idu2dfu_load_instr_vld),
- 								 //.dfu2idu_load_done(dfu2idu_load_instr_done),
+ 								 .dfu2idu_load_done(dfu2idu_load_instr_done),
  								 .idu2dfu_compute_fifo_empty(idu2dfu_compute_fifo_empty),
  								 .dfu2idu_compute_instr_req(dfu2idu_compute_instr_req),
  								 .idu2dfu_compute_instr(idu2dfu_compute_instr),
  								 .idu2dfu_compute_instr_vld(idu2dfu_compute_instr_vld),
- 								 //.dfu2idu_compute_done(dfu2idu_compute_done),
+ 								 .dfu2idu_compute_done(dfu2idu_compute_done),
  								 .idu2dfu_store_fifo_empty(idu2dfu_store_fifo_empty),
  								
  								 .dfu2idu_store_instr_req(dfu2idu_store_instr_req),
  								 .idu2dfu_store_instr(idu2dfu_store_instr),
  								 .idu2dfu_store_instr_vld(idu2dfu_store_instr_vld),
- 								 //.dfu2idu_store_done(dfu2idu_store_done)
-                                 .dfu_lsc_done(dfu_lsc_done)
+ 								 .dfu2idu_store_done(dfu2idu_store_done)
+  //                               .dfu_lsc_done(dfu_lsc_done)
                                 );
   
-  dfu_lsc dfu_lsc_done1(.clk(clk),
+ /* dfu_lsc dfu_lsc_done1(.clk(clk),
                         .rst(rst),
                         .dfu2idu_load_instr_done(dfu2idu_load_instr_done),
                         .dfu2idu_compute_done(dfu2idu_compute_done),
                         .dfu2idu_store_done(dfu2idu_store_done),
                         .dfu_lsc_done(dfu_lsc_done)
                        );
-  
+ */
 			 DFU_TOP DFU_DUT (
    								 .clk                            (clk),
    								 .rst                            (rst),
